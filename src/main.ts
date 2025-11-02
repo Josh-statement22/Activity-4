@@ -15,10 +15,10 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // ✅ Global validation
+  // Global validation
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-  // ✅ Swagger setup
+  // Swagger setup
   const config = new DocumentBuilder()
     .setTitle('Weather Proxy API')
     .setDescription('Proxy to external weather providers with caching & logs')

@@ -22,7 +22,7 @@ export default function App() {
     }
   };
 
-  // 🌦 Helper: Choose icon based on weather condition
+  
   const getWeatherIcon = (condition) => {
     const desc = condition?.toLowerCase() || '';
     if (desc.includes('rain')) return <CloudRain className="text-blue-500" size={60} />;
@@ -32,7 +32,7 @@ export default function App() {
     return <Wind className="text-gray-400" size={60} />;
   };
 
-  // 🎨 Helper: Dynamic background color based on weather
+
   const getWeatherBackground = (condition) => {
     switch (condition) {
       case 'Clear':
@@ -60,7 +60,7 @@ export default function App() {
           : 'from-sky-300 via-blue-200 to-blue-400'
       }`}
     >
-      {/* Subtle floating background circles for aesthetic depth */}
+    
       <div className="absolute w-72 h-72 bg-white/20 rounded-full blur-3xl top-10 left-10 animate-pulse"></div>
       <div className="absolute w-80 h-80 bg-blue-500/20 rounded-full blur-3xl bottom-10 right-10 animate-pulse"></div>
 

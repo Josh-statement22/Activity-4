@@ -45,7 +45,7 @@ export class WeatherService {
 
     const cacheKey = this.buildCacheKey(query);
 
-    // ✅ check cache
+    // check cache
     const cached = await this.cacheManager.get<any>(cacheKey);
     if (cached) {
       await this.logModel.create({
@@ -58,15 +58,13 @@ export class WeatherService {
       return { fromCache: true, data: cached };
     }
 
-    // ✅ safe API call
+    // safe API call
     const resp = await firstValueFrom(this.http.get(this.openWeatherUrl, { params: query }));
     const data = resp.data;
 
-    // ✅ TTL fix (pass number, not object)
     const ttl = parseInt(process.env.CACHE_TTL_SECONDS || '300', 10);
     await this.cacheManager.set(cacheKey, data, ttl);
 
-    // ✅ log
     await this.logModel.create({
       query,
       provider: 'openweathermap',
